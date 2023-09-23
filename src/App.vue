@@ -1,40 +1,42 @@
 <template>
   <div :id="$style.app">
-    <h1>{{ title }}</h1>
-
-    <DirectivesTest />
-    <StarRating />
+    <ApartmentsList :items="apartments" />
   </div>
 </template>
 
 <script>
-import DirectivesTest from "./components/DirectivesTest.vue";
-import StarRating from "./components/StarRating.vue";
-
+import ApartmentsList from "./components/Apartment/ApartmentsList.vue";
+import apartments from "./components/Apartment/apartments";
 export default {
   name: "App",
-  components: { DirectivesTest, StarRating },
   data() {
     return {
-      amountOfClicks: 0,
+      apartments,
+      apartment: {
+        id: "1",
+        title: "Apartment Kyiv",
+        descr:
+          "Beautiful view from your window. Situated on Yaroslaviv Val street. Cozy with all furniture.",
+        price: 9079,
+        rating: 4.7,
+        location: {
+          city: "Kyiv",
+        },
+        owner: {
+          name: "Igor",
+          phone: "0669401013",
+          email: "mail@gmail.com",
+        },
+      },
     };
   },
-  computed: {
-    title() {
-      return `Amount of clicks ${this.amountOfClicks}`;
-    },
-  },
-  methods: {
-    increment() {
-      this.amountOfClicks += 1;
-    },
-  },
+  components: { ApartmentsList },
 };
 </script>
 
 <style module>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: Montserrat, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
