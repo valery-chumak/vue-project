@@ -1,36 +1,37 @@
 <template>
   <div :id="$style.app">
-    <ApartmentsList :items="apartments" />
+    <h2>{{ text }}</h2>
+    <CustomSelect :items="['name', 'label', 'salary']" />
+    <CustomInput v-model="text" />
+    <ApartmentsList :items="apartments">
+      <template v-slot:apartment="{ apartment }">
+        <ApartmentsItem
+          :key="apartment.id"
+          :descr="apartment.descr"
+          :rating="apartment.rating"
+          :imgSrc="apartment.imgUrl"
+          :price="apartment.price"
+        />
+      </template>
+    </ApartmentsList>
   </div>
 </template>
 
 <script>
 import ApartmentsList from "./components/Apartment/ApartmentsList.vue";
 import apartments from "./components/Apartment/apartments";
+import ApartmentsItem from "./components/Apartment/ApartmentsItem.vue";
+import CustomInput from "./components/shared/CustomInput.vue";
+import CustomSelect from "./components/shared/CustomSelect.vue";
 export default {
   name: "App",
   data() {
     return {
       apartments,
-      apartment: {
-        id: "1",
-        title: "Apartment Kyiv",
-        descr:
-          "Beautiful view from your window. Situated on Yaroslaviv Val street. Cozy with all furniture.",
-        price: 9079,
-        rating: 4.7,
-        location: {
-          city: "Kyiv",
-        },
-        owner: {
-          name: "Igor",
-          phone: "0669401013",
-          email: "mail@gmail.com",
-        },
-      },
+      text: "",
     };
   },
-  components: { ApartmentsList },
+  components: { ApartmentsList, ApartmentsItem, CustomInput, CustomSelect },
 };
 </script>
 
