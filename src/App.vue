@@ -1,8 +1,9 @@
 <template>
-  <div :id="$style.app">
-    <h2>{{ text }}</h2>
-    <CustomSelect :items="['name', 'label', 'salary']" />
-    <CustomInput v-model="text" />
+  <div id="app">
+    <Container>
+      <h2>{{ text }}</h2>
+      <ApartmentsFilterForm class="apartments-filter" @submit="logger" />
+    </Container>
     <ApartmentsList :items="apartments">
       <template v-slot:apartment="{ apartment }">
         <ApartmentsItem
@@ -21,8 +22,8 @@
 import ApartmentsList from "./components/Apartment/ApartmentsList.vue";
 import apartments from "./components/Apartment/apartments";
 import ApartmentsItem from "./components/Apartment/ApartmentsItem.vue";
-import CustomInput from "./components/shared/CustomInput.vue";
-import CustomSelect from "./components/shared/CustomSelect.vue";
+import ApartmentsFilterForm from "./components/Apartment/ApartmentsFilterForm.vue";
+import Container from "./components/shared/Container.vue";
 export default {
   name: "App",
   data() {
@@ -31,11 +32,21 @@ export default {
       text: "",
     };
   },
-  components: { ApartmentsList, ApartmentsItem, CustomInput, CustomSelect },
+  components: {
+    ApartmentsList,
+    ApartmentsItem,
+    ApartmentsFilterForm,
+    Container,
+  },
+  methods: {
+    logger(value) {
+      console.log(value, "form value");
+    },
+  },
 };
 </script>
 
-<style module>
+<style module lang="scss" scoped>
 #app {
   font-family: Montserrat, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

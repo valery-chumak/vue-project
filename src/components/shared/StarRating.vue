@@ -66,11 +66,11 @@ export default {
   }
 
   &--colored {
-    background: url("../img/svg/star.svg") center no-repeat;
+    background: url("../../img/svg/star.svg") center no-repeat;
   }
 
   &--outlined {
-    background: url("../img/svg/star-outlined.svg") center no-repeat;
+    background: url("../../img/svg/star-outlined.svg") center no-repeat;
   }
 }
 </style>

@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import StarRating from "../StarRating.vue";
+import StarRating from "../shared/StarRating.vue";
 
 export default {
   name: "ApartmentsItem",
@@ -49,7 +49,7 @@ export default {
 .apartments-item {
   position: relative;
   width: 33.333%;
-  max-width: 350px;
+
   padding: 0 15px;
   margin-bottom: 30px;
 
