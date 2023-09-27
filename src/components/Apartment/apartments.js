@@ -19,15 +19,15 @@ export default [
   },
   {
     id: "2",
-    title: "Apartment Kyiv",
+    title: "Apartment Kharkiv",
     descr:
       "Beautiful view from your window. Situated on Yaroslaviv Val street. Cozy with all furniture.",
-    price: 9079,
+    price: 5000,
     rating: 2.7,
     imgUrl:
       "https://media.istockphoto.com/id/1289883686/photo/spacious-apartment-with-window-wall.jpg?s=170667a&w=0&k=20&c=btbaF2yI_OGQY4YnM1m2eEvnPCHwYTbAjjLU98bSF5o=",
     location: {
-      city: "Kyiv",
+      city: "Kharkiv",
     },
     owner: {
       name: "Igor",
@@ -37,15 +37,15 @@ export default [
   },
   {
     id: "3",
-    title: "Apartment Kyiv",
+    title: "Apartment Kharkiv",
     descr:
       "Beautiful view from your window. Situated on Yaroslaviv Val street. Cozy with all furniture.",
-    price: 9079,
+    price: 16000,
     rating: 3,
     imgUrl:
       "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8YXBhcnRtZW50fGVufDB8fDB8fHww&w=1000&q=80",
     location: {
-      city: "Kyiv",
+      city: "Kharkiv",
     },
     owner: {
       name: "Igor",
@@ -55,15 +55,15 @@ export default [
   },
   {
     id: "4",
-    title: "Apartment Kyiv",
+    title: "Apartment Lviv",
     descr:
       "Beautiful view from your window. Situated on Yaroslaviv Val street. Cozy with all furniture.",
-    price: 9079,
+    price: 5000,
     rating: 5,
     imgUrl:
       "https://media.istockphoto.com/id/1182454657/photo/bohemian-living-room-interior-3d-render.jpg?s=612x612&w=0&k=20&c=qw37MGIiTL_jML3_Tbm4bM-jNLCrocSWj7DanhBr_bY=",
     location: {
-      city: "Kyiv",
+      city: "Lviv",
     },
     owner: {
       name: "Igor",
@@ -91,14 +91,14 @@ export default [
   },
   {
     id: "6",
-    title: "Apartment Kyiv",
+    title: "Apartment Lviv",
     descr:
       "Beautiful view from your window. Situated on Yaroslaviv Val street. Cozy with all furniture.",
-    price: 5079,
+    price: 5087,
     rating: 5,
     imgUrl: "https://cdn.mos.cms.futurecdn.net/mnVfKcyfKEnMMhmx4qHxnL.jpg",
     location: {
-      city: "Kyiv",
+      city: "Lviv",
     },
     owner: {
       name: "Igor",
@@ -108,15 +108,15 @@ export default [
   },
   {
     id: "7",
-    title: "Apartment Kyiv",
+    title: "Apartment Poltava",
     descr:
       "Beautiful view from your window. Situated on Yaroslaviv Val street. Cozy with all furniture.",
-    price: 19079,
+    price: 10079,
     rating: 5,
     imgUrl:
       "https://www.contemporist.com/wp-content/uploads/2019/10/modern-apartment-design-hidden-lighting-111019-1249-01-800x408.jpg",
     location: {
-      city: "Kyiv",
+      city: "Poltava",
     },
     owner: {
       name: "Igor",
@@ -126,7 +126,7 @@ export default [
   },
   {
     id: "8",
-    title: "Apartment Kyiv",
+    title: "Apartment Irpin",
     descr:
       "Beautiful view from your window. Situated on Yaroslaviv Val street. Cozy with all furniture.",
     price: 3079,
@@ -134,7 +134,7 @@ export default [
     imgUrl:
       "https://images1.apartments.com/i2/qdnoYaDmFh0RK2vj-0yqVCB_11FhW51wQNU1t1AB2j4/111/image.jpg",
     location: {
-      city: "Kyiv",
+      city: "Irpin",
     },
     owner: {
       name: "Igor",
@@ -144,15 +144,15 @@ export default [
   },
   {
     id: "9",
-    title: "Apartment Kyiv",
+    title: "Apartment Poltava",
     descr:
       "Beautiful view from your window. Situated on Yaroslaviv Val street. Cozy with all furniture.",
-    price: 10079,
+    price: 11079,
     rating: 3.7,
     imgUrl:
       "https://hips.hearstapps.com/hmg-prod/images/5da4a66d-36dc-45b5-a0bd-c3bcd5c58af2-jpg-1625856263.jpg",
     location: {
-      city: "Kyiv",
+      city: "Poltava",
     },
     owner: {
       name: "Igor",
