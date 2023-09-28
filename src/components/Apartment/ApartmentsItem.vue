@@ -1,13 +1,17 @@
 <template>
   <div class="apartments-item" @click="log">
     <div class="apartments-item__inner">
-      <img :src="imgSrc" alt="" class="apartments-item__photo" />
+      <img :src="imgSrc" alt="apartment" class="apartments-item__photo" />
       <div class="apartments-item__content">
         <p class="apartments-item__description">{{ descr }}</p>
         <div class="apartments-item__rating">
           <StarRating :rating="rating" />
         </div>
         <div class="apartments-item__price">UAH {{ price }}</div>
+        <router-link
+          :to="{ name: 'apartment', params: { id } }"
+          class="apartments-item__link"
+        ></router-link>
       </div>
     </div>
   </div>
@@ -20,6 +24,10 @@ export default {
   name: "ApartmentsItem",
   components: { StarRating },
   props: {
+    id: {
+      type: String,
+      required: true,
+    },
     descr: {
       type: String,
       default: "",
