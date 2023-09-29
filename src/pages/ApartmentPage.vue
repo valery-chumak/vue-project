@@ -1,7 +1,7 @@
 <template>
   <main class="apartment-page">
     <Container>
-      <div class="apartment-page__content">
+      <div v-if="apartment" class="apartment-page__content">
         <ApartmentsMainInfo :apartment="apartment" />
 
         <div class="apartment-page__additional-info">
@@ -18,22 +18,30 @@
 
 <script>
 import Container from "@/components/shared/Container.vue";
-import apartments from "../components/Apartment/apartments";
 import ApartmentsMainInfo from "@/components/Apartment/ApartmentsMainInfo.vue";
 import ApartmentOwner from "@/components/Apartment/ApartmentsOwner.vue";
 import UserReviews from "../components/Reviews/index.vue";
 import reviewsList from "../components/Reviews/reviews.json";
+import { getApartmentById } from "../services/apartmentsService";
 export default {
   name: "ApartmentPage",
-
+  data() {
+    return {
+      apartment: null,
+    };
+  },
+  async created() {
+    try {
+      const { id } = this.$route.params;
+      const { data } = await getApartmentById(id);
+      this.apartment = data;
+    } catch (error) {
+      console.log(error);
+    }
+  },
   computed: {
     reviewsList() {
       return reviewsList;
-    },
-    apartment() {
-      return apartments.find(
-        (apartment) => apartment.id == this.$route.params.id
-      );
     },
   },
   components: { Container, UserReviews, ApartmentsMainInfo, ApartmentOwner },
