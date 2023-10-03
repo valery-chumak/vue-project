@@ -4,7 +4,7 @@ import HomePage from "./pages/HomePage.vue";
 import ApartmentPage from "./pages/ApartmentPage.vue";
 import ErrorPage from "./pages/ErrorPage.vue";
 import VueRouter from "vue-router";
-
+import LoginPage from "./pages/LoginPage.vue";
 const routes = [
   {
     path: "/",
@@ -16,7 +16,11 @@ const routes = [
     component: ApartmentPage,
     name: "apartment",
   },
-
+  {
+    path: "/login",
+    component: LoginPage,
+    name: "login-page",
+  },
   {
     path: "/foo",
     component: FooPage,

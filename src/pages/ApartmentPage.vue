@@ -1,18 +1,20 @@
 <template>
   <main class="apartment-page">
-    <Container>
-      <div v-if="apartment" class="apartment-page__content">
-        <ApartmentsMainInfo :apartment="apartment" />
+    <CustomSection>
+      <Container>
+        <div v-if="apartment" class="apartment-page__content">
+          <ApartmentsMainInfo :apartment="apartment" />
 
-        <div class="apartment-page__additional-info">
-          <ApartmentOwner
-            class="apartment-page__owner"
-            :owner="apartment.owner"
-          />
-          <UserReviews :reviews="reviewsList" />
+          <div class="apartment-page__additional-info">
+            <ApartmentOwner
+              class="apartment-page__owner"
+              :owner="apartment.owner"
+            />
+            <UserReviews :reviews="reviewsList" />
+          </div>
         </div>
-      </div>
-    </Container>
+      </Container>
+    </CustomSection>
   </main>
 </template>
 
@@ -23,6 +25,7 @@ import ApartmentOwner from "@/components/Apartment/ApartmentsOwner.vue";
 import UserReviews from "../components/Reviews/index.vue";
 import reviewsList from "../components/Reviews/reviews.json";
 import { getApartmentById } from "../services/apartmentsService";
+import CustomSection from "@/components/shared/CustomSection.vue";
 export default {
   name: "ApartmentPage",
   data() {
@@ -44,7 +47,13 @@ export default {
       return reviewsList;
     },
   },
-  components: { Container, UserReviews, ApartmentsMainInfo, ApartmentOwner },
+  components: {
+    Container,
+    UserReviews,
+    ApartmentsMainInfo,
+    ApartmentOwner,
+    CustomSection,
+  },
 };
 </script>
 

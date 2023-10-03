@@ -1,24 +1,26 @@
 <template>
   <main class="homepage">
-    <Container>
-      <ApartmentsFilterForm class="apartments-filter" @submit="filter" />
-    </Container>
+    <CustomSection>
+      <Container>
+        <ApartmentsFilterForm class="apartments-filter" @submit="filter" />
+      </Container>
 
-    <Container>
-      <p class="not-found" v-if="!filteredApartments.length">Not found :(</p>
-      <ApartmentsList v-else :items="filteredApartments">
-        <template v-slot:apartment="{ apartment }">
-          <ApartmentsItem
-            :key="apartment.id"
-            :id="apartment.id"
-            :descr="apartment.descr"
-            :rating="apartment.rating"
-            :imgSrc="apartment.imgUrl"
-            :price="apartment.price"
-          />
-        </template>
-      </ApartmentsList>
-    </Container>
+      <Container>
+        <p class="not-found" v-if="!filteredApartments.length">Not found :(</p>
+        <ApartmentsList v-else :items="filteredApartments">
+          <template v-slot:apartment="{ apartment }">
+            <ApartmentsItem
+              :key="apartment.id"
+              :id="apartment.id"
+              :descr="apartment.descr"
+              :rating="apartment.rating"
+              :imgSrc="apartment.imgUrl"
+              :price="apartment.price"
+            />
+          </template>
+        </ApartmentsList>
+      </Container>
+    </CustomSection>
   </main>
 </template>
 
@@ -28,6 +30,7 @@ import ApartmentsItem from "../components/Apartment/ApartmentsItem.vue";
 import ApartmentsFilterForm from "../components/Apartment/ApartmentsFilterForm.vue";
 import Container from "../components/shared/Container.vue";
 import { getApartmentsList } from "../services/apartmentsService";
+import CustomSection from "@/components/shared/CustomSection.vue";
 export default {
   name: "HomePage",
   data() {
@@ -58,6 +61,7 @@ export default {
     ApartmentsItem,
     ApartmentsFilterForm,
     Container,
+    CustomSection,
   },
   methods: {
     filter({ city, price }) {

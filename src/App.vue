@@ -12,6 +12,7 @@
 <script>
 import AppFooter from "./components/shared/Footer.vue";
 import AppHeader from "./components/shared/Header.vue";
+
 export default {
   name: "App",
   components: {
@@ -33,6 +34,5 @@ export default {
 
 .content {
   flex-grow: 1;
-  padding-top: 120px;
 }
 </style>

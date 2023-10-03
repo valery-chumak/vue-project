@@ -1,10 +1,14 @@
 <template>
   <form class="form" @submit.prevent="handleSubmit">
     <CustomSelect :items="cities" v-model="city" class="form__select" />
-    <CustomInput v-model="price" placeholder="Price, from" />
-    <SubmitButton type="submit" class="form__submit">
-      Підбір житла
-    </SubmitButton>
+    <CustomInput
+      v-model="price"
+      type="number"
+      placeholder="Price, from"
+      error-message="Must not be empty"
+      :rules="rules"
+    />
+    <SubmitButton type="submit" class="form__submit"> Find </SubmitButton>
   </form>
 </template>
 
@@ -12,9 +16,10 @@
 import CustomInput from "../shared/CustomInput.vue";
 import CustomSelect from "../shared/CustomSelect.vue";
 import SubmitButton from "../shared/Button.vue";
-
+import { isRequired, charLimit } from "../../utils/validationRules";
 export default {
   name: "FilterForm",
+
   data() {
     return {
       price: "",
@@ -38,6 +43,9 @@ export default {
         "Poltava",
         "Rivne",
       ];
+    },
+    rules() {
+      return [isRequired, charLimit(10)];
     },
   },
   methods: {
