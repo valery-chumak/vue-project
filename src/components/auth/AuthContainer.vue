@@ -12,9 +12,9 @@ export default {
 
 <style lang="scss" scoped>
 .auth-container {
-  width: 410px;
-  height: 298px;
   padding: 30px;
+  max-width: 410px;
+  width: 100%;
   background: #fff;
 }
 </style>
