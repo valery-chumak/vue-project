@@ -18,7 +18,7 @@
         autocomplete="current-password"
         :rules="passwordRules"
       />
-      <Button type="bsubmit" class="login__btn">Login</Button>
+      <Button :loading="loading" type="submit" class="login__btn">Login</Button>
     </Form>
   </AuthContainer>
 </template>
@@ -41,6 +41,7 @@ export default {
   components: { Form, CustomInput, Button, AuthContainer, MainTitle },
   data() {
     return {
+      loading: false,
       formData: {
         email: "",
         password: "",
@@ -53,10 +54,13 @@ export default {
 
       if (isFormValid) {
         try {
+          this.loading = true;
           const { data } = await loginUser(this.formData);
           console.log(data);
         } catch (error) {
           console.log(error);
+        } finally {
+          this.loading = false;
         }
       }
     },

@@ -1,12 +1,19 @@
 <template>
-  <button v-bind:type="type" :class="{ btn: true, 'btn--outlined': outlined }">
-    <slot></slot>
+  <button
+    v-bind:type="type"
+    :disabled="loading"
+    :class="{ btn: true, 'btn--outlined': outlined }"
+  >
+    <CircleLoader class="btn__loader" v-if="loading" width="38" height="38" />
+    <span class="btn_content" :class="contentStyle"> <slot></slot></span>
   </button>
 </template>
 
 <script>
+import CircleLoader from "../loaders/Circle.vue";
 export default {
   name: "MainButton",
+  components: { CircleLoader },
   props: {
     type: {
       type: String,
@@ -16,29 +23,59 @@ export default {
       type: Boolean,
       default: false,
     },
+    loading: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  computed: {
+    contentStyle() {
+      return {
+        "btn__content--hidden": this.loading,
+      };
+    },
   },
 };
 </script>
 
 <style lang="scss" scoped>
 .btn {
-  width: 220px;
-  height: 44px;
-  background: #ff662d;
-  padding: 8px 15px;
-  border: none;
-  color: #fff;
-  text-align: center;
-  font-family: Montserrat;
+  position: relative;
+  display: inline-block;
   font-size: 18px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
+  background: #ff662d;
+  color: #fff;
   cursor: pointer;
+  min-width: 220px;
+  border: 1px solid transparent;
+  padding: 8px 15px;
+  transition: background-color 0.4s, color 0.4s;
+  font-family: Montserrat, sans-serif;
+
+  &:hover {
+    background: #fff;
+    color: #ff662d;
+    border: 1px solid #ff662d;
+  }
+
   &--outlined {
-    border: #ff662d 1px solid;
-    background-color: #fff;
-    color: black;
+    background: none;
+    border: 1px solid #ff662d;
+    color: #ff662d;
+  }
+
+  &__content {
+    &--hidden {
+      opacity: 0;
+    }
+  }
+
+  &__loader {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
   }
 }
 </style>
