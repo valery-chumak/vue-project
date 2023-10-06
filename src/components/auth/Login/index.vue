@@ -32,7 +32,7 @@ import {
   passwordValidation,
   isRequired,
 } from "../../../utils/validationRules";
-import { loginUser } from "../../../services/authService";
+import { mapActions } from "vuex";
 import AuthContainer from "../../auth/AuthContainer.vue";
 import MainTitle from "@/components/shared/MainTitle.vue";
 
@@ -49,16 +49,25 @@ export default {
     };
   },
   methods: {
+    ...mapActions("auth", ["login"]),
     async handleSubmit() {
-      const isFormValid = this.$refs.form.validate();
+      const { form } = this.$refs;
+      const isFormValid = form.validate();
 
       if (isFormValid) {
         try {
           this.loading = true;
-          const { data } = await loginUser(this.formData);
-          console.log(data);
+
+          await this.login(this.formData);
+
+          this.$router.push({ name: "homepage" });
+          form.reset();
         } catch (error) {
-          console.log(error);
+          this.$notify({
+            type: "error",
+            title: "Error occured",
+            text: error.message,
+          });
         } finally {
           this.loading = false;
         }
