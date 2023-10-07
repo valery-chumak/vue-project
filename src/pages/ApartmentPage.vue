@@ -20,10 +20,10 @@
 
 <script>
 import Container from "@/components/shared/Container.vue";
-import ApartmentsMainInfo from "@/components/Apartment/ApartmentsMainInfo.vue";
-import ApartmentOwner from "@/components/Apartment/ApartmentsOwner.vue";
-import UserReviews from "../components/Reviews/index.vue";
-import reviewsList from "../components/Reviews/reviews.json";
+import ApartmentsMainInfo from "../components/apartment/ApartmentsMainInfo.vue";
+import ApartmentOwner from "@/components/apartment/ApartmentsOwner.vue";
+import UserReviews from "../components/reviews/index.vue";
+import reviewsList from "../components/reviews/reviews.json";
 import { getApartmentById } from "../services/apartmentsService";
 import CustomSection from "@/components/shared/CustomSection.vue";
 export default {

@@ -1,7 +1,6 @@
 <template>
   <div class="wrapper">
     <img src="../../img/svg/logo.svg" alt="logo" />
-    <router-link :to="{ name: 'homepage' }" class="logo__link"></router-link>
   </div>
 </template>
 

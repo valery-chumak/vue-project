@@ -1,5 +1,6 @@
 <template>
   <button
+    @click="$emit('click')"
     v-bind:type="type"
     :disabled="loading"
     :class="{ btn: true, 'btn--outlined': outlined }"

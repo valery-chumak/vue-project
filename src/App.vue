@@ -12,8 +12,8 @@
 
 <script>
 import AppFooter from "./components/shared/Footer.vue";
-import AppHeader from "./components/shared/Header.vue";
-import Notifications from "./components/Notifications/index.vue";
+import AppHeader from "./components/header/index.vue";
+import Notifications from "./components/notifications/index.vue";
 export default {
   name: "App",
   components: {

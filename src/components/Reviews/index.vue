@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import ReviewsItem from "../Reviews/ReviewsItem/index.vue";
+import ReviewsItem from "../reviews/ReviewsItem/index.vue";
 import StarRating from "../shared/StarRating.vue";
 
 export default {

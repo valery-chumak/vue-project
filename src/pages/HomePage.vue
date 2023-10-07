@@ -25,9 +25,9 @@
 </template>
 
 <script>
-import ApartmentsList from "../components/Apartment/ApartmentsList.vue";
-import ApartmentsItem from "../components/Apartment/ApartmentsItem.vue";
-import ApartmentsFilterForm from "../components/Apartment/ApartmentsFilterForm.vue";
+import ApartmentsList from "../components/apartment/ApartmentsList.vue";
+import ApartmentsItem from "../components/apartment/ApartmentsItem.vue";
+import ApartmentsFilterForm from "../components/apartment/ApartmentsFilterForm.vue";
 import Container from "../components/shared/Container.vue";
 import { getApartmentsList } from "../services/apartmentsService";
 import CustomSection from "@/components/shared/CustomSection.vue";
