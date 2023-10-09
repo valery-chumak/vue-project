@@ -19,12 +19,14 @@
     </button>
     <ul class="account-actions__list" v-show="isOpen">
       <li class="account-actions__item">
-        <router-link :to="{ name: 'my-orders' }" class="account-actions__link"
-          >My bookings</router-link
-        >
+        <router-link :to="{ name: 'my-orders' }" class="account-actions__link">
+          My bookings
+        </router-link>
       </li>
       <li class="account-actions__item">
-        <button class="account-actions__logout" @click="logout">Logout</button>
+        <button class="account-actions__logout" @click="handleLogout">
+          Logout
+        </button>
       </li>
     </ul>
   </div>
@@ -49,6 +51,21 @@ export default {
     },
     toggle() {
       this.isOpen = !this.isOpen;
+    },
+    async handleLogout() {
+      try {
+        await this.logout();
+        const { requireAuth } = this.$route.meta;
+
+        if (requireAuth) {
+          this.$router.push({ name: "login-page" });
+        }
+      } catch (error) {
+        this.$notify({
+          type: "error",
+          title: "Logout failed",
+        });
+      }
     },
   },
 };

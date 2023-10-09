@@ -1,11 +1,13 @@
-import FooPage from "./pages/FooPage.vue";
-import BarPage from "./pages/BarPage.vue";
-import HomePage from "./pages/HomePage.vue";
-import ApartmentPage from "./pages/ApartmentPage.vue";
 import ErrorPage from "./pages/ErrorPage.vue";
 import VueRouter from "vue-router";
-import LoginPage from "./pages/LoginPage.vue";
-import RegistrationPage from "./pages/RegistrationPage.vue";
+import store from "./store";
+
+const HomePage = () => import("./pages/HomePage.vue");
+const ApartmentPage = () => import("./pages/ApartmentPage.vue");
+const LoginPage = () => import("./pages/LoginPage.vue");
+const RegistrationPage = () => import("./pages/RegistrationPage.vue");
+const MyOrdersPage = () => import("./pages/MyOrdersPage.vue");
+
 const routes = [
   {
     path: "/",
@@ -16,24 +18,33 @@ const routes = [
     path: "/apartment/:id",
     component: ApartmentPage,
     name: "apartment",
+    meta: {
+      requireAuth: true,
+    },
+  },
+  {
+    path: "/my-orders",
+    component: MyOrdersPage,
+    name: "my-orders",
+    meta: {
+      requireAuth: true,
+    },
   },
   {
     path: "/login",
     component: LoginPage,
     name: "login-page",
+    meta: {
+      hideForAuth: true,
+    },
   },
   {
     path: "/registration",
     component: RegistrationPage,
     name: "register-page",
-  },
-  {
-    path: "/foo",
-    component: FooPage,
-  },
-  {
-    path: "/bar",
-    component: BarPage,
+    meta: {
+      hideForAuth: true,
+    },
   },
   {
     path: "*",
@@ -43,5 +54,21 @@ const routes = [
 ];
 
 const router = new VueRouter({ routes, mode: "history" });
+router.beforeEach((to, from, next) => {
+  const isLoggedIn = store.getters["auth/isLoggedIn"];
 
+  if (to.matched.some((record) => record.meta.requiresAuth)) {
+    if (!isLoggedIn) {
+      next({ name: "login-page" });
+    }
+  }
+
+  if (to.matched.some((record) => record.meta.hideForAuth)) {
+    if (isLoggedIn) {
+      next({ name: "homepage" });
+    }
+  }
+
+  next();
+});
 export default router;
