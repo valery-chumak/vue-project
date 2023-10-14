@@ -11,6 +11,7 @@ Vue.use(VueRouter);
 Vue.use(Notifications);
 
 new Vue({
+  base: "/vue-project/",
   render: (h) => h(App),
   router,
   store,
