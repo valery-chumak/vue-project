@@ -2,7 +2,14 @@
   <main class="apartment-page">
     <CustomSection>
       <Container>
-        <div v-if="apartment" class="apartment-page__content">
+        <CircleLoader
+          class="apartment-page__loader"
+          v-if="isLoading"
+          color="orange"
+          width="98"
+          height="98"
+        />
+        <div v-if="apartment && !isLoading" class="apartment-page__content">
           <ApartmentsMainInfo :apartment="apartment" />
 
           <div class="apartment-page__additional-info">
@@ -26,20 +33,29 @@ import UserReviews from "../components/reviews/index.vue";
 import reviewsList from "../components/reviews/reviews.json";
 import { getApartmentById } from "../services/apartmentsService";
 import CustomSection from "@/components/shared/CustomSection.vue";
+import CircleLoader from "@/components/loaders/Circle.vue";
 export default {
   name: "ApartmentPage",
   data() {
     return {
       apartment: null,
+      isLoading: false,
     };
   },
   async created() {
     try {
+      this.isLoading = true;
       const { id } = this.$route.params;
       const { data } = await getApartmentById(id);
       this.apartment = data;
     } catch (error) {
-      console.log(error);
+      this.$notify({
+        type: "error",
+        title: "Error occured",
+        text: error.message,
+      });
+    } finally {
+      this.isLoading = false;
     }
   },
   computed: {
@@ -53,6 +69,7 @@ export default {
     ApartmentsMainInfo,
     ApartmentOwner,
     CustomSection,
+    CircleLoader,
   },
 };
 </script>
@@ -71,6 +88,11 @@ export default {
     max-width: 350px;
     flex-grow: 0;
     flex-shrink: 1;
+  }
+  &__loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
   }
 }
 </style>

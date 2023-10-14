@@ -6,7 +6,16 @@
       </Container>
 
       <Container>
-        <p class="not-found" v-if="!filteredApartments.length">Not found :(</p>
+        <CircleLoader
+          class="homepage__loader"
+          v-if="isLoading"
+          color="orange"
+          width="98"
+          height="98"
+        />
+        <p class="not-found" v-if="!filteredApartments.length && !isLoading">
+          Not found :(
+        </p>
         <ApartmentsList v-else :items="filteredApartments">
           <template v-slot:apartment="{ apartment }">
             <ApartmentsItem
@@ -31,6 +40,7 @@ import ApartmentsFilterForm from "../components/apartment/ApartmentsFilterForm.v
 import Container from "../components/shared/Container.vue";
 import { getApartmentsList } from "../services/apartmentsService";
 import CustomSection from "@/components/shared/CustomSection.vue";
+import CircleLoader from "@/components/loaders/Circle.vue";
 export default {
   name: "HomePage",
   data() {
@@ -41,14 +51,22 @@ export default {
         city: "",
         price: 0,
       },
+      isLoading: false,
     };
   },
   async created() {
     try {
+      this.isLoading = true;
       const { data } = await getApartmentsList();
       this.apartments = data;
     } catch (error) {
-      console.log(error);
+      this.$notify({
+        type: "error",
+        title: "Error occured",
+        text: error.message,
+      });
+    } finally {
+      this.isLoading = false;
     }
   },
   computed: {
@@ -62,6 +80,7 @@ export default {
     ApartmentsFilterForm,
     Container,
     CustomSection,
+    CircleLoader,
   },
   methods: {
     filter({ city, price }) {
@@ -91,5 +110,10 @@ export default {
   text-align: center;
   font-size: 23px;
   margin-top: 90px;
+}
+.homepage__loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
 }
 </style>
