@@ -53,7 +53,11 @@ const routes = [
   },
 ];
 
-const router = new VueRouter({ routes, mode: "history" });
+const router = new VueRouter({
+  base: "/vue-project/",
+  routes,
+  mode: "history",
+});
 router.beforeEach((to, from, next) => {
   const isLoggedIn = store.getters["auth/isLoggedIn"];
 
